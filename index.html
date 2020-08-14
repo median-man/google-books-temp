@@ -14,7 +14,18 @@
             "<br>" + item.volumeInfo.title;
         }
       }
+      loadBooks()
+
+      async function loadBooks() {
+        const response = await fetch("https://www.googleapis.com/books/v1/volumes?q=harry+potter");
+        if (response.ok) {
+          const data = await response.json();
+          handleResponse(data);
+        } else {
+          alert("An error occurred.");
+          console.log(response.statusText);
+        }
+      }
     </script>
-    <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
   </body>
 </html>
